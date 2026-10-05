@@ -15,7 +15,7 @@ riscv-core/
 
 
 # alu.v
-module alu (
+``` module alu (
     input  wire [31:0] a,
     input  wire [31:0] b,
     input  wire [3:0] alu_control,
@@ -56,9 +56,10 @@ module alu (
     assign zero = (alu_result == 32'b0);
 
 endmodule
+```
 
 # register_file.v
-module register_file (
+``` module register_file (
     input wire clk,
     input wire reset,
 
@@ -101,9 +102,10 @@ module register_file (
     end
 
 endmodule
+```
 
 # pc.v
-module pc (
+``` module pc (
     input wire clk,
     input wire reset,
     input wire [31:0] next_pc,
@@ -121,9 +123,9 @@ module pc (
     end
 
 endmodule
-
+```
 # instruction_memory.v
-module instruction_memory (
+``` module instruction_memory (
     input wire [31:0] pc,
     output wire [31:0] instruction
 );
@@ -133,9 +135,9 @@ module instruction_memory (
     assign instruction = imem[pc[9:2]];
 
 endmodule
-
+```
 # data_memory.v
-module data_memory (
+``` module data_memory (
     input wire clk,
 
     input wire mem_read,
@@ -159,8 +161,9 @@ module data_memory (
     end
 
 endmodule
+```
 # immediate_generator.v
-module immediate_generator (
+``` module immediate_generator (
     input wire [31:0] instruction,
 
     output wire [31:0] imm_i,
@@ -189,8 +192,9 @@ module immediate_generator (
     };
 
 endmodule
+```
 # instruction_decoder.v
-module instruction_decoder (
+``` module instruction_decoder (
     input wire [31:0] instruction,
 
     output wire [6:0] opcode,
@@ -215,8 +219,9 @@ module instruction_decoder (
     assign rd = instruction[11:7];
 
 endmodule
+```
 # control_unit.
-module control_unit (
+``` module control_unit (
     input wire [6:0] opcode,
     input wire [2:0] funct3,
     input wire [6:0] funct7,
@@ -326,8 +331,9 @@ module control_unit (
     end
 
 endmodule
+```
 # alu_input_mux.v
-module alu_input_mux (
+``` module alu_input_mux (
     input wire [31:0] rs2_data,
     input wire [31:0] imm_i,
     input wire [31:0] imm_s,
@@ -343,8 +349,9 @@ module alu_input_mux (
                    rs2_data;
 
 endmodule
+```
 # writeback_mux.v
-module writeback_mux (
+``` module writeback_mux (
     input wire [31:0] alu_result,
     input wire [31:0] memory_data,
     input wire mem_to_reg,
@@ -356,8 +363,9 @@ module writeback_mux (
         mem_to_reg ? memory_data : alu_result;
 
 endmodule
+```
 # next_pc_logic.v
-module next_pc_logic (
+```module next_pc_logic (
     input wire [31:0] pc,
     input wire [31:0] imm_b,
 
@@ -381,4 +389,4 @@ module next_pc_logic (
 
 endmodule
 
-
+```
